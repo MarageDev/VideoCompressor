@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/VideoCompressor.css">
     <style>
-        #slider {
+        #outputSizeSlider {
             -webkit-appearance: none;
             /* Override default CSS styles */
             appearance: none;
@@ -27,12 +27,12 @@
         }
 
 
-        #slider:hover {
+        #outputSizeSlider:hover {
             opacity: 1;
             /* Fully shown on mouse-over */
         }
 
-        #slider::-webkit-slider-thumb {
+        #outputSizeSlider::-webkit-slider-thumb {
             -webkit-appearance: none;
             /* Override default look */
             appearance: none;
@@ -251,7 +251,7 @@
                 grid-template-columns: repeat(2, 1);
                 grid-gap: 20px;
                 margin:0px 0px;
-                grid-template-rows: 35px 35px 35px 35px;
+                grid-template-rows: 35px 35px 35px 35px 35px;
                 align-items: center;
                 ">
                 <label style="grid-column:1; grid-row:1;" class="textLabel">Input video path</label>
@@ -284,7 +284,7 @@
                         justify-self: center;">
                     <input type="text" id="outputVideoTextBar" name="name" style="grid-column:1;" class="inputText"
                         placeholder="Path to the output video" style="grid-column:2; grid-row:2;">
-                    <button style="grid-column:2;" class="buttonFileBrowse" id="btnBrowseOutputFile">
+                    <button style="grid-column:2;" class="buttonFileBrowse" id="btnBrowseOutputFile" onclick="openOutputFileExplorer()">
                         <span class="buttonFileBrowseText">...</span>
                     </button>
                 </div>
@@ -303,22 +303,50 @@
                         justify-self: center;
                         ">
                     <div style="  height: 100%;width: 100%;display: flex;align-items: center">
-                        <input type="range" min="1" max="100" value="50" id="slider"
+                        <input type="range" min="1" max="100" value="50" id="outputSizeSlider"
                             style="grid-column:1; vertical-align: baseline;">
                     </div>
 
-                    <input type="text" name="name" class="inputText"
+                    <input type="text" name="name" class="inputText" 
                         style="border-radius: 5px; background-color: rgba(0,0,0,0); color: rgb(255,255,255);"
-                        placeholder="Mo" style="grid-column:2;">
-                    <div style="  height: 100%;width: 100%;display: flex;align-items: center; align-items: center;">
+                        placeholder="Mo" style="grid-column:2;"id="outputSizeText">
+                   
+                        <div  style="  height: 100%;width: 100%;display: flex;align-items: center; align-items: center;">
                         <label
                             style="grid-column:3; vertical-align: baseline; text-align: center; width: 100%;">Mo</label>
                     </div>
                 </div>
-                <button style="grid-column-start: 1; grid-column-end: 3; grid-row:4;" class="buttonCompress" id="btnCompressFile" onclick="compress()">
+                <label style="grid-column:1; grid-row:4;">Presets</label>
+                        <div style="height: 100%;
+                            grid-column:2;
+                            min-height: 100%;
+                            width: 100%;
+                            display: grid;
+                            grid-template-columns: repeat(3, 1);
+                            margin:0px 0px;
+                            grid-gap: 20px;
+                            justify-content:stretch;
+                            justify-items: center;
+                            justify-self: center;
+                            ">
+                            <div style="height: 100%;width: 100%;display: flex;align-items: center; grid-column: 2; ">
+                                <input type="radio" id="EightMbOptionSelector" style="grid-column:1; vertical-align: baseline;">
+                                    <label style="grid-column:3; vertical-align: baseline; text-align: left; width: 100%;">8 Mb</label>
+                            </div>
+                            <div style="height: 100%;width: 100%;display: flex;align-items: center; grid-column: 3; ">
+                                <input type="radio" id="FiftyMbOptionSelector" style="grid-column:1; vertical-align: baseline;">
+                                    <label style="grid-column:3; vertical-align: baseline; text-align: left; width: 100%;">50 Mb</label>
+                            </div>
+                            <div style="height: 100%;width: 100%;display: flex;align-items: center; grid-column: 4; ">
+                                <input type="radio" id="HundredMbOptionSelector" style="grid-column:1; vertical-align: baseline;">
+                                    <label style="grid-column:3; vertical-align: baseline; text-align: left; width: 100%;">100 Mb</label>
+                            </div>
+                        </div>
+
+                <button style="grid-column-start: 1; grid-column-end: 3; grid-row:5;" class="buttonCompress" id="btnCompressFile" onclick="compress()">
                     <span class="buttonCompressText" >Compress</span>
                 </button>
-                <p id="test">aaa</p>
+                <p id="test" style="position:absolute;">aaa</p>
             </div>
 
         </div>

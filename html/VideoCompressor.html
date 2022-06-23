@@ -115,7 +115,7 @@
             cursor: pointer;
             transition: all 0.35s ease-in-out;
         }
-        .buttonCompress:hover {
+        .buttonCompress:hover:not(.buttonCompress:disabled) {
             background-color: rgba(4, 83, 255, 0.5);
             color: white;
         }
@@ -123,10 +123,14 @@
             color: rgb(157, 157, 157);
             transition: all 0.35s ease-in-out;
         }
-        .buttonCompress:hover .buttonCompressText{
+        .buttonCompress:hover:not(.buttonCompress:disabled) .buttonCompressText{
             color:white;
         }
-
+        .buttonCompress:disabled, .buttonCompress[disabled]{
+            cursor:default;
+            background-color: #2b2b2b;
+            color: #2c2c2c;
+        }
         #titleBarContainer{
             background-color: rgba(0, 0, 0, 0.3);
             position: absolute;
@@ -144,6 +148,7 @@
             width: 50%;
             font-size: 15px;
             transform: translate(40px,5px);
+            user-select: none;
         }
 
         body>#titleBarContainer>#titleBar>#titleBarMoveable{
@@ -208,7 +213,7 @@
                     max-width: 200%;
                     object-fit: contain;
                     height: 100%;
-                    margin-left: 10px;">
+                    margin-left: 10px; user-select: none; -webkit-user-drag: none;">
                 </div>
             <div id="titleBarName">
                     Video Compressor
@@ -254,7 +259,7 @@
                 grid-template-rows: 35px 35px 35px 35px 35px;
                 align-items: center;
                 ">
-                <label style="grid-column:1; grid-row:1;" class="textLabel">Input video path</label>
+                <label style="grid-column:1; grid-row:1; user-select: none;" class="textLabel">Input video path</label>
                 <div style="height: 100%;
                         min-height: 100%;
                         width: 100%;
@@ -265,13 +270,13 @@
                         justify-content:stretch;
                         justify-items: left;
                         justify-self: center;">
-                    <input type="text" id="inputVideoTextBar" style="grid-column:1;" class="inputText" name="name"
+                    <input type="text" id="inputVideoTextBar" style="grid-column:1;" class="inputText" name="name" title="Absolute path of the original video"
                         placeholder="Path to the input video" style="grid-column:2; grid-row:1;">
                     <button style="grid-column:2;" class="buttonFileBrowse" id="btnBrowseInputFile" onclick="openInputFileExplorer()">
-                        <span class="buttonFileBrowseText">...</span>
+                        <span class="buttonFileBrowseText" style="user-select: none;">...</span>
                     </button>
                 </div>
-                <label style="grid-column:1; grid-row:2;">Output video path</label>
+                <label style="grid-column:1; grid-row:2; user-select: none;">Output video path</label>
                 <div style="height: 100%;
                         min-height: 100%;
                         width: 100%;
@@ -282,13 +287,13 @@
                         justify-content:stretch;
                         justify-items: left;
                         justify-self: center;">
-                    <input type="text" id="outputVideoTextBar" name="name" style="grid-column:1;" class="inputText"
+                    <input type="text" id="outputVideoTextBar" name="name" style="grid-column:1;" class="inputText" title="Absolute path of the compressed video"
                         placeholder="Path to the output video" style="grid-column:2; grid-row:2;">
                     <button style="grid-column:2;" class="buttonFileBrowse" id="btnBrowseOutputFile" onclick="openOutputFileExplorer()">
-                        <span class="buttonFileBrowseText">...</span>
+                        <span class="buttonFileBrowseText" style="user-select: none;">...</span>
                     </button>
                 </div>
-                <label style="grid-column:1; grid-row:3;">Output size</label>
+                <label style="grid-column:1; grid-row:3; user-select: none;">Output size</label>
                 <div style="height: 100%;
                         grid-column:2; grid-row:3;
                         min-height: 100%;
@@ -303,21 +308,21 @@
                         justify-self: center;
                         ">
                     <div style="  height: 100%;width: 100%;display: flex;align-items: center">
-                        <input type="range" min="1" max="100" value="50" id="outputSizeSlider"
+                        <input type="range" min="1" max="100" value="10" id="outputSizeSlider"
                             style="grid-column:1; vertical-align: baseline;">
                     </div>
 
-                    <input type="text" name="name" class="inputText" 
+                    <input type="text" name="name" class="inputText" title="Enter the output video size in MegaBytes"
                         style="border-radius: 5px; background-color: rgba(0,0,0,0); color: rgb(255,255,255);"
-                        placeholder="Mo" style="grid-column:2;"id="outputSizeText">
+                        placeholder="Mb" style="grid-column:2;"id="outputSizeText">
                    
-                        <div  style="  height: 100%;width: 100%;display: flex;align-items: center; align-items: center;">
+                        <div  style="height: 100%;width: 100%;display: flex;align-items: center; align-items: center;">
                         <label
-                            style="grid-column:3; vertical-align: baseline; text-align: center; width: 100%;">Mo</label>
+                            style="grid-column:3; vertical-align: baseline; text-align: center; width: 100%; user-select: none;">Mb</label>
                     </div>
                 </div>
-                <label style="grid-column:1; grid-row:4;">Presets</label>
-                        <div style="height: 100%;
+                <label style="grid-column:1; grid-row:4; user-select: none;">Presets</label>
+                <div style="height: 100%;
                             grid-column:2;
                             min-height: 100%;
                             width: 100%;
@@ -331,29 +336,27 @@
                             ">
                             <div style="height: 100%;width: 100%;display: flex;align-items: center; grid-column: 2; ">
                                 <input type="radio" id="EightMbOptionSelector" style="grid-column:1; vertical-align: baseline;">
-                                    <label style="grid-column:3; vertical-align: baseline; text-align: left; width: 100%;">8 Mb</label>
+                                    <label style="grid-column:3; vertical-align: baseline; text-align: left; width: 100%; border-right: 2px rgba(255, 255, 255, 0.2) solid; user-select: none;">8 Mb</label>
                             </div>
                             <div style="height: 100%;width: 100%;display: flex;align-items: center; grid-column: 3; ">
                                 <input type="radio" id="FiftyMbOptionSelector" style="grid-column:1; vertical-align: baseline;">
-                                    <label style="grid-column:3; vertical-align: baseline; text-align: left; width: 100%;">50 Mb</label>
+                                    <label style="grid-column:3; vertical-align: baseline; text-align: left; width: 100%; border-right: 2px rgba(255, 255, 255, 0.2) solid; user-select: none;">50 Mb</label>
                             </div>
                             <div style="height: 100%;width: 100%;display: flex;align-items: center; grid-column: 4; ">
                                 <input type="radio" id="HundredMbOptionSelector" style="grid-column:1; vertical-align: baseline;">
-                                    <label style="grid-column:3; vertical-align: baseline; text-align: left; width: 100%;">100 Mb</label>
+                                    <label style="grid-column:3; vertical-align: baseline; text-align: left; width: 100%; user-select: none;">100 Mb</label>
                             </div>
-                        </div>
-
-                <button style="grid-column-start: 1; grid-column-end: 3; grid-row:5;" class="buttonCompress" id="btnCompressFile" onclick="compress()">
-                    <span class="buttonCompressText" >Compress</span>
+                </div>
+                <button disabled style="grid-column-start: 1; grid-column-end: 3; grid-row:5;" class="buttonCompress" id="btnCompressFile" onclick="compress()">
+                    <span class="buttonCompressText" style=" user-select: none;">Compress</span>
                 </button>
-                <p id="test" style="position:absolute;">aaa</p>
             </div>
 
         </div>
         <div style="grid-column: 2; width: 100%;">
             <div id="videoPreview"
                 style="width:100%; height:200px; border:2px rgb(255,255,255) solid; border-radius:8px; box-shadow: 0px 5px 10px rgba(0,0,0,1);background-color: black; overflow: hidden;">
-                <img src="../Images/rect123846.png" style="  position: relative;
+                <!-- <img src="../Images/rect123846.png" style="  position: relative;
                     left: 50%;
                     top: 50%;
                     transform: translate(-50%,-50%);
@@ -363,7 +366,15 @@
                     max-width: 100%;
                     
                     width: auto;
-                    height: auto;">
+                    height: auto; user-select: none; -webkit-user-drag: none;"> -->
+                    <video src="../Videos/video.mp4" id="inputVideoPreview" style="  position: relative;left: 50%;
+                    top: 50%;
+                    transform: translate(-50%,-50%);
+                    aspect-ratio: auto;display: block;
+                    max-width: 100%;
+                    
+                    width: auto;
+                    height: auto; user-select: none; -webkit-user-drag: none;" autoplay loop muted></video>
             </div>
             <div style="height: 100%;
                 min-height: 100%;
@@ -386,7 +397,6 @@
 
         </div>
     </div>
-    
 </body>
 
 

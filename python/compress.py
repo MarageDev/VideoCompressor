@@ -30,4 +30,4 @@ def compress_video(video_full_path, output_file_name, target_size):
     ffmpeg.output(i, output_file_name,**{'c:v': 'libx264', 'b:v': video_bitrate, 'pass': 2, 'c:a': 'aac', 'b:a': audio_bitrate}).overwrite_output().run()
 
 
-compress_video(args[0], args[1],float(args[2])*1000)
+compress_video(args[0],args[3],float(args[2])*1000)

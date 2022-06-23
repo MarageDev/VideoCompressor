@@ -2,8 +2,6 @@ import os, ffmpeg
 import python_shell as pys
 import sys
 
-
-
 def compress_video(video_full_path, output_file_name, target_size):
 
 
@@ -32,11 +30,12 @@ def compress_video(video_full_path, output_file_name, target_size):
     
     ffmpeg.output(i, os.devnull,**{'c:v': 'libx264', 'b:v': video_bitrate, 'pass': 1, 'f': 'mp4'}).overwrite_output().run()
     ffmpeg.output(i, output_file_name,**{'c:v': 'libx264', 'b:v': video_bitrate, 'pass': 2, 'c:a': 'aac', 'b:a': audio_bitrate}).overwrite_output().run()
-input_video = "2022-06-19 22-44-35.mp4"
-output_video_name = "b.mp4"
+input_video = "../2022-06-19 22-44-35"
+output_video_name = "../b"
 output_target_file_size = 10
 args = sys.argv[1:]
 print(args)
+compress_video(f'{input_video}.mp4', f'{output_video_name}.mp4', float(output_target_file_size)*1000)
 #compress_video(f'{input_video}.mp4', f'{output_video_name}.mp4', float(output_target_file_size)*1000)
 print(f'The video {input_video} will be compressed to a size of {output_target_file_size} as {output_video_name}')
 

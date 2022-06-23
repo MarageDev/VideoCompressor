@@ -1,5 +1,5 @@
-const {app, BrowserWindow } = require('electron')
-
+const {app, BrowserWindow, ipcMain } = require('electron')
+const ipc = ipcMain
 
 
 function createWindow(){
@@ -9,11 +9,24 @@ function createWindow(){
         resizable: false,
         autoHideMenuBar: true,
         title: "Video Kompressor",
+        frame:false,
+        icon: __dirname +'/Images/Compressor2.png',
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            contextIsolation: false
    }
     })
     win.loadFile(__dirname + '/html/VideoCompressor.html')
+
+    ipc.on('closeApp', ()=> {
+        win.close()
+    })
+    ipc.on('minimizeApp', ()=> {
+        win.minimize()
+    })
+    ipc.on('maximizeApp', ()=> {
+        win.maximize()
+    })
 }
 
 app.whenReady().then(createWindow)

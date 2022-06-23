@@ -10,7 +10,7 @@ function createWindow(){
         autoHideMenuBar: true,
         title: "Video Kompressor",
         frame:false,
-        icon: __dirname +'/Images/Compressor2.png',
+        icon: __dirname +'/Images/CompressorIcon.png',
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false
@@ -24,9 +24,10 @@ function createWindow(){
     ipc.on('minimizeApp', ()=> {
         win.minimize()
     })
+    /*      NOT USED IN THIS APP
     ipc.on('maximizeApp', ()=> {
         win.maximize()
-    })
+    })*/
 }
 
 app.whenReady().then(createWindow)

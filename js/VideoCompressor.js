@@ -38,10 +38,7 @@ const ffmpeg = require('ffmpeg.js');
 const { stdin } = require('process');
 
 
-
-
-
-
+/*    ANOTHER VERSION I DID IN JsToPy BUT NOT USED
 const spawner = require('child_process').spawn;
 let python_process = spawner('python', ['./main.py'])
 function sendEvent (name, args){
@@ -65,13 +62,15 @@ function sendEvent (name, args){
        console.log('Data received from python :', data.toString())
    })
 }
+*/
 
 //    CHECK COMPRESSION POSSIBILITY
 function checkCompressionPossibility(){
    let isOutputExisting = fs.existsSync(outputVideoTextBar.value.toString())
    let isInputExisiting =  fs.existsSync(inputVideoTextBar.value.toString())
-
-   if(isInputExisiting == true && isOutputExisting == true){
+   
+   //    CONDITIONS TO ENABLE THE COMPRESSION BUTTON
+   if(isInputExisiting == true && isOutputExisting == true && outputSizeText.value != 0 && outputSizeText.value < videoSize.innerHTML){   
       return btnCompressFile.disabled = false
    }else{
       return btnCompressFile.disabled = true

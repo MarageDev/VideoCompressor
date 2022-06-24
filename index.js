@@ -1,5 +1,7 @@
 const {app, BrowserWindow, ipcMain } = require('electron')
 const ipc = ipcMain
+const pyshell = require('python-shell')
+const ffmpeg = require('ffmpeg')
 
 
 function createWindow(){

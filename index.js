@@ -8,9 +8,9 @@ function createWindow(){
         height: 450,
         resizable: false,
         autoHideMenuBar: true,
-        title: "Video Kompressor",
+        title: "Video Compressor",
         frame:false,
-        icon: __dirname +'/Images/CompressorIcon.png',
+        icon: __dirname +'/Images/VideoCompressor.ico',
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false
@@ -28,6 +28,7 @@ function createWindow(){
     ipc.on('maximizeApp', ()=> {
         win.maximize()
     })*/
+    const iconPath = path.join(__dirname, 'builds/icon.png')
 }
 
 app.whenReady().then(createWindow)

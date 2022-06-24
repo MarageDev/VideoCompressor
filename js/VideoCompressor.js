@@ -182,7 +182,8 @@ function openInputFileExplorer(){
                 new Date(data[0].duration * 1000).toISOString().substr(11, 8);
                 videoResolution.innerHTML = data[0].width.toString()+" x "+data[0].height.toString()
                 videoLength.innerHTML = new Date(data[0].duration * 1000).toISOString().substr(11, 8);
-                inputVideoPreview.src=file.path
+                inputVideoPreview.src=file.path;
+                inputVideoPreview.style.maxWidth = '100%'
 
                 /*
                 ffmpeg({

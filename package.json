@@ -1,18 +1,26 @@
 {
   "name": "videocompressor",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-packager . --arch=x64"
   },
   "keywords": [],
-  "author": "",
+  "author": "Marage",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^19.0.6"
+    "electron": "^19.0.6",
+    "ffmpeg": "^0.0.4",
+    "ffmpeg-static": "^5.0.0",
+    "ffmpeg.js": "^4.2.9003",
+    "ffprobe": "^1.1.2",
+    "ffprobe-static": "^3.1.0",
+    "python-shell": "^3.0.1"
   },
   "dependencies": {
+    "electron-packager": "^15.5.1",
     "ffmpeg": "^0.0.4",
     "ffmpeg-static": "^5.0.0",
     "ffmpeg.js": "^4.2.9003",
